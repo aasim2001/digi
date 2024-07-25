@@ -151,22 +151,28 @@ function reverse(pin) {
 
   var LatDivDeg = 0;
   var LonDivDeg = 0;
-    let obj = {};
+  let obj = {};
   let arr = [];
   let nextLat = MaxLat;
   var NextLon = MinLon;
-  for (x = 0; x < LatDivBy; x++) {
-    LonDivDeg = (MaxLon - MinLon) / LonDivBy;
-    LatDivDeg = (MaxLat - MinLat) / LatDivBy;
-    let m = [];
-    m = [nextLat, nextLat - LatDivDeg];
-    for (y = 0; y < LonDivBy; y++) {
-      arr.push({lat: m, lon: [NextLon, NextLon + LonDivDeg]});
-      obj[L1[x][y]] = {lat: m, lon: [NextLon, NextLon + LonDivDeg]}
 
-      NextLon = NextLon + LonDivDeg;
+
+    for (x = 0; x < LatDivBy; x++) {
+      LonDivDeg = (MaxLon - MinLon) / LonDivBy;
+      LatDivDeg = (MaxLat - MinLat) / LatDivBy;
+      let m = [];
+      m = [nextLat, nextLat - LatDivDeg];
+      for (y = 0; y < LonDivBy; y++) {
+        arr.push({ lat: m, lon: [NextLon, NextLon + LonDivDeg] });
+        obj[L1[x][y]] = { lat: m, lon: [NextLon, NextLon + LonDivDeg] };
+
+        NextLon = NextLon + LonDivDeg;
+      }
+      nextLat = nextLat - LatDivDeg;
     }
-    nextLat = nextLat - LatDivDeg;
+
+  for (let Lvl = 1; Lvl <= 10; Lvl++) {
+
   }
   console.log(arr);
   console.log(obj);
